@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom animations */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 1000px 100%;
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+/* Starfield background */
+.cosmic-bg {
+  background: radial-gradient(circle at 50% 20%, #0b1a35 0%, #01010f 80%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Faint orbital arcs */
+.orbit-lines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 400px 400px, 700px 700px;
+  mask-image: radial-gradient(circle, white 60%, transparent 100%);
+  z-index: 0;
+}
+
+/* Glowing planet dots */
+.star-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+  animation: twinkle 4s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* globals.css additions (keep your file, just append) */
+
+/* Glassmorphism helpers */
+.glass {
+  background: rgba(10, 14, 28, 0.45);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Slight starry noise overlay (for areas without canvas) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='%23ffffff'%3E%3Ccircle cx='2' cy='2' r='1'/%3E%3Ccircle cx='90' cy='50' r='1'/%3E%3Ccircle cx='40' cy='90' r='1'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.font-ceremonial {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.02em;
+}
+
+/* ===== Cosmic polish ===== */
+.glass-xl {
+  background: rgba(8, 16, 36, 0.42);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 35px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.sun-glow {
+  box-shadow:
+    0 0 60px 20px rgba(244,199,107,0.15),
+    0 0 140px 40px rgba(244,199,107,0.08);
+}
+
+.hr-faint {
+  border-color: rgba(255,255,255,0.08);
+}
+
+.btn-aurum {
+  background-image: linear-gradient(135deg,#f4c76b 0%,#e9a83a 60%,#d88b1a 100%);
+  color: #0a0f1f;
+}
+
+.text-aurum {
+  color: #f4c76b;
+}
+
+.border-aurum {
+  border-color: rgba(244,199,107,0.45);
+}
+
+.title-aurum {
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.02em;
+}
+
+/* Subtle breathing */
+.breathe {
+  animation: breathe 6s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%,100%{ transform: scale(1)}
+  50%{ transform: scale(1.02)}
+}
