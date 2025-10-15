@@ -6,7 +6,6 @@ from sqlalchemy import create_engine, Column, Integer, String, Float, Boolean, D
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.sql import func
-from geoalchemy2 import Geography
 from datetime import datetime
 from typing import Generator
 import enum
@@ -83,7 +82,8 @@ class Site(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(200), nullable=False)
-    location = Column(Geography('POINT', srid=4326), nullable=False)  # PostGIS
+    latitude = Column(Float, nullable=False)
+    longitude = Column(Float, nullable=False)
     elevation = Column(Float, default=0.0)
     timezone = Column(String(50), nullable=False)
     magnetic_declination = Column(Float)  # Cached value
@@ -230,7 +230,8 @@ def create_test_data(db: Session):
     # Test site: Jaipur Jantar Mantar
     test_site = Site(
         name="Jaipur Jantar Mantar",
-        location="POINT(75.7873 26.9124)",
+        latitude=26.9124,
+        longitude=75.7873,
         elevation=431,
         timezone="Asia/Kolkata",
         magnetic_declination=1.2,
